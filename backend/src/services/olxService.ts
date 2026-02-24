@@ -95,6 +95,9 @@ export class OLXService {
       per_page: limit,
       attr_encoded: '1',
       canton: 9, // Kanton Sarajevo
+      created_get: "-24 hours",
+      price_from: 200000, // Minimum price: 200,000 KM
+      price_to: 330000, // Maximum price: 330,000 KM
       sort_by: 'date',
       sort_order: 'desc',
     };
