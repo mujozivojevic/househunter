@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+.env
+.env.local
+*.db
+*.db-journal
+data/
+dist/
+build/
+.git
+.gitignore
+README.md
+*.md
+

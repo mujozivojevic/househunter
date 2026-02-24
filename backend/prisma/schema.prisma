@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./data/dev.db"
+}
+
+model Listing {
+  id                   String   @id
+  title                String
+  description          String?
+  price                Float
+  url                  String
+  location             String?
+  images               String
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  lastSeen             DateTime @default(now())
+  notifiedAt           DateTime? // When this listing was first notified to all users
+  priceAtNotification  Float?   // Price when notification was sent (to detect price drops)
+}
+
+model User {
+  id         Int          @id @default(autoincrement())
+  telegramId String       @unique
+  username   String?
+  filters    UserFilter[]
+  createdAt  DateTime     @default(now())
+}
+
+model UserFilter {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  minPrice  Float?
+  maxPrice  Float?
+  location  String?
+  type      String?  // apartment / house / null = any
+  createdAt DateTime @default(now())
+}
+
+
