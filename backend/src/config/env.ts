@@ -11,12 +11,6 @@ if (result.error) {
   console.log(`[CONFIG] Loaded .env file from ${envPath}`);
 }
 
-// Hardcoded Telegram bot token
-const telegramBotToken = '8352975582:AAFlR9t2TnX1antw0ynH-TWDROvAbI0EVQM';
-
-// Log token status (without exposing the full token)
-console.log(`[CONFIG] Telegram Bot Token loaded: ${telegramBotToken.substring(0, 10)}...`);
-
 export const config = {
   port: parseInt(process.env.PORT || '3001', 10), // Railway sets PORT automatically
   databaseUrl: process.env.DATABASE_URL || 'file:./data/dev.db',
@@ -24,7 +18,7 @@ export const config = {
   olxClientId: process.env.OLX_CLIENT_ID || '',
   olxClientSecret: process.env.OLX_CLIENT_SECRET || '',
   olxAccessToken: process.env.OLX_ACCESS_TOKEN || '',
-  telegramBotToken: telegramBotToken,
+  telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || '',
   frontendUrl: process.env.FRONTEND_URL || 'http://localhost:5173',
 };
 
