@@ -24,12 +24,12 @@ RUN npx prisma generate
 # Build TypeScript
 RUN npm run build
 
-# Create data directory for SQLite
-RUN mkdir -p /app/data
+# Create data directory for SQLite with proper permissions
+RUN mkdir -p /app/prisma/data && chmod -R 777 /app/prisma/data
 
 # Expose port (Railway sets PORT automatically)
 EXPOSE $PORT
 
-# Start script that runs migrations then starts the app
-CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
+# Start script that creates data dir, runs migrations, then starts the app
+CMD ["sh", "-c", "mkdir -p /app/prisma/data && npx prisma migrate deploy && npm start"]
 
