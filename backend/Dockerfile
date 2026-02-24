@@ -30,6 +30,6 @@ RUN mkdir -p /app/prisma/data && chmod -R 777 /app/prisma/data
 # Expose port (Railway sets PORT automatically)
 EXPOSE $PORT
 
-# Start script that creates data dir, runs migrations, then starts the app
-CMD ["sh", "-c", "mkdir -p /app/prisma/data && npx prisma migrate deploy && npm start"]
+# Start script that creates data dir, pushes schema to DB, then starts the app
+CMD ["sh", "-c", "mkdir -p /app/prisma/data && npx prisma db push --accept-data-loss && npm start"]
 
