@@ -253,6 +253,7 @@ export class TelegramService {
    * Get updates from Telegram (for polling)
    */
   async getUpdates(offset?: number): Promise<any> {
+    console.log("TELEGRAM URL:", `${this.apiUrl}/getUpdates`);
     try {
       const response = await axios.get(`${this.apiUrl}/getUpdates`, {
         params: {
